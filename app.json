@@ -1,11 +1,11 @@
 {
   "expo": {
-    "name": "Bank",
-    "slug": "Bank",
+    "name": "mini-bank",
+    "slug": "mini-bank",
     "version": "1.0.0",
     "orientation": "portrait",
     "icon": "./assets/images/icon.png",
-    "scheme": "bank",
+    "scheme": "minibank",
     "userInterfaceStyle": "automatic",
     "newArchEnabled": true,
     "ios": {
@@ -33,7 +33,8 @@
           "resizeMode": "contain",
           "backgroundColor": "#ffffff"
         }
-      ]
+      ],
+      "expo-secure-store"
     ],
     "experiments": {
       "typedRoutes": true
