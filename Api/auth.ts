@@ -5,6 +5,7 @@ import { storeToken } from "./store";
 
 const login = async (user: UserType) => {
   const { data } = await instance.post("/auth/login", user);
+  // token: استخدم مكتبة jwt
   if (data.token) {
     await storeToken(data.token);
   }
@@ -15,7 +16,7 @@ const register = async (username: string, password: string, image: string) => {
   try {
     const formData = new FormData();
     formData.append("username", username);
-    formData.append("password", password);
+    formData.append("password", password); // شفر كلمة المرور قبل تخزينها , شفر بأستخدام مكتبة bcrypt
     formData.append("image", {
       name: "profile.jpeg",
       uri: image,
@@ -28,6 +29,7 @@ const register = async (username: string, password: string, image: string) => {
       await storeToken(data.token);
     }
     return data;
+    // سوي مركز اخطاء بدال كتابة try,catch بكثرة 
   } catch (error) {
     console.error("Error in register function:", error);
     throw error; // Re-throw the error to handle it in the calling function
@@ -36,11 +38,12 @@ const register = async (username: string, password: string, image: string) => {
 
 const getMyProfile = async () => {
   const { data } = await instance.get("/auth/me");
-
+  // لا ترجع كلمة المرور للمصتفح 
   return data;
 };
 const getAllUsers = async () => {
   const { data } = await instance.get("/auth/users");
+  // لا ترجع كلمة المرور للمصتفح 
   return data;
 };
 
